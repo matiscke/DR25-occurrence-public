@@ -1,9 +1,12 @@
 from astropy.io import fits
 import numpy as np
 import matplotlib.pyplot as plt
+import sys
 
-inputprefix = "out_sc0_GK_baseline_noMesSmear"
+# inputprefix = "out_sc0_GK_baseline"
+inputprefix = sys.argv[1]
 inputgrid = inputprefix + ".fits.gz"
+print(inputgrid)
 
 hdulist = fits.open(inputgrid)
 cumulative_array = hdulist[0].data
@@ -26,7 +29,7 @@ period_want2d, rp_want2d = np.meshgrid(period_want, rp_want)
 
 mynearblack = tuple(np.array([75.0, 75.0, 75.0]) / 255.0)
 myblue = tuple(np.array([0.0, 109.0, 219.0]) / 255.0)
-labelfontsize=15.0
+labelfontsize=9.0
 tickfontsize=14.0
 datalinewidth=3.0
 plotboxlinewidth=3.0
@@ -42,8 +45,8 @@ Y = rp_want2d
 x1 = probdet / kiclist.size
 CS2 = plt.contour(X, Y, x1, levels=uselevels, linewidth=datalinewidth, 
                    colors=(myblue,) * len(uselevels))
-#plt.clabel(CS2, inline=1, fontsize=labelfontsize, fmt='%1.2f', 
-#           inline_spacing=10.0, fontweight='ultrabold')
+plt.clabel(CS2, inline=1, fontsize=labelfontsize, fmt='%1.2f',
+           inline_spacing=6.0)
 CS1 = plt.contourf(X, Y, x1, levels=uselevels, cmap=plt.cm.bone)    
 plt.xlabel('Period [day]', fontsize=labelfontsize, fontweight='heavy')
 plt.ylabel('R$_{p}$ [R$_{\oplus}$]', fontsize=labelfontsize, 
