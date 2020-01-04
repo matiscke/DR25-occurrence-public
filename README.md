@@ -6,3 +6,5 @@ This repository contains the analysis results behind our paper "A Probabilistic 
 It also contains the Python notebooks used to perform this analysis, but does not contain the required stellar property files because they are not yet released.
 
 Working Python notebooks with required data using published stellar catalogs can be found in the repository stevepur/DR25-occurence-tutorial.  
+
+Inverted, scrambled, injected and observed data for the high reliability, high completeness and FPWG PC Robovetter variations are found in data/.
